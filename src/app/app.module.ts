@@ -22,7 +22,6 @@ export function initConfig(appConfig: AppConfigService) {
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
     HttpClientModule,
     FormsModule
   ],

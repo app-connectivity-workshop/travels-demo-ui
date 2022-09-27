@@ -26,6 +26,9 @@ export function app(): express.Express {
   const NODE_ENV = get('NODE_ENV').default('dev').asEnum(['dev', 'prod']);
   const LOG_LEVEL = get('LOG_LEVEL').asString();
 
+  const GETWHOAMI =  '/api/whoami';
+  const WHOAMI = get('WHOAMI').default('green').asString();
+  console.log("server called::WHOAMI", WHOAMI);
 
   // HTTP and WebSocket traffic both use this port
   const  PORT = get('PORT').default(4200).asPortNumber();
@@ -67,6 +70,11 @@ export function app(): express.Express {
   **/
 
  // Get Product Details based on Product IDs
+ server.get(GETWHOAMI, (req, res) => {
+  console.log("WHOAMI", WHOAMI)
+    res.send("{\"travelId\" : \"" + WHOAMI+ " \"}");  
+  });
+
  server.get(GET_CITIES, (req, res) => {
   //res.send(cities);
   console.log("GET_CITIES invoked")
@@ -138,232 +146,3 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
 }
 
 export * from './src/main.server';
-
-
-const cities = [
-  {
-    "city": "Amsterdam",
-    "lat": 52.35,
-    "long": 4.9166
-  },
-  {
-    "city": "Andorra",
-    "lat": 42.5,
-    "long": 1.5165
-  },
-  {
-    "city": "Athens",
-    "lat": 37.9833,
-    "long": 23.7333
-  },
-  {
-    "city": "Belgrade",
-    "lat": 44.8186,
-    "long": 20.468
-  },
-  {
-    "city": "Berlin",
-    "lat": 52.5218,
-    "long": 13.4015
-  },
-  {
-    "city": "Bern",
-    "lat": 46.9167,
-    "long": 7.467
-  },
-  {
-    "city": "Bratislava",
-    "lat": 48.15,
-    "long": 17.117
-  },
-  {
-    "city": "Brussels",
-    "lat": 50.8333,
-    "long": 4.3333
-  },
-  {
-    "city": "Bucharest",
-    "lat": 44.4334,
-    "long": 26.0999
-  },
-  {
-    "city": "Budapest",
-    "lat": 47.5,
-    "long": 19.0833
-  },
-  {
-    "city": "Chisinau",
-    "lat": 47.005,
-    "long": 28.8577
-  },
-  {
-    "city": "Copenhagen",
-    "lat": 55.6786,
-    "long": 12.5635
-  },
-  {
-    "city": "Dublin",
-    "lat": 53.3331,
-    "long": -6.2489
-  },
-  {
-    "city": "Helsinki",
-    "lat": 60.1756,
-    "long": 24.9341
-  },
-  {
-    "city": "Kiev",
-    "lat": 50.473782,
-    "long": 30.516237
-  },
-  {
-    "city": "Lisbon",
-    "lat": 38.7227,
-    "long": -9.1449
-  },
-  {
-    "city": "Ljubljana",
-    "lat": 46.0553,
-    "long": 14.515
-  },
-  {
-    "city": "London",
-    "lat": 51.5,
-    "long": -0.1167
-  },
-  {
-    "city": "Luxembourg",
-    "lat": 49.6117,
-    "long": 6.13
-  },
-  {
-    "city": "Madrid",
-    "lat": 40.4,
-    "long": -3.6834
-  },
-  {
-    "city": "Minsk",
-    "lat": 53.9,
-    "long": 27.5666
-  },
-  {
-    "city": "Monaco",
-    "lat": 43.7396,
-    "long": 7.4069
-  },
-  {
-    "city": "Moscow",
-    "lat": 55.7522,
-    "long": 37.6155
-  },
-  {
-    "city": "Nicosia",
-    "lat": 35.1667,
-    "long": 33.3666
-  },
-  {
-    "city": "Nuuk",
-    "lat": 64.1983,
-    "long": -51.7327
-  },
-  {
-    "city": "Oslo",
-    "lat": 59.9167,
-    "long": 10.75
-  },
-  {
-    "city": "Paris",
-    "lat": 48.8667,
-    "long": 2.3333
-  },
-  {
-    "city": "Podgorica",
-    "lat": 42.466,
-    "long": 19.2663
-  },
-  {
-    "city": "Prague",
-    "lat": 50.0833,
-    "long": 14.466
-  },
-  {
-    "city": "Reykjavik",
-    "lat": 64.15,
-    "long": -21.95
-  },
-  {
-    "city": "Riga",
-    "lat": 56.95,
-    "long": 24.1
-  },
-  {
-    "city": "Rome",
-    "lat": 41.896,
-    "long": 12.4833
-  },
-  {
-    "city": "SanMarino",
-    "lat": 43.9172,
-    "long": 12.4667
-  },
-  {
-    "city": "Sarajevo",
-    "lat": 43.85,
-    "long": 18.383
-  },
-  {
-    "city": "Skopje",
-    "lat": 42,
-    "long": 21.4335
-  },
-  {
-    "city": "Sofia",
-    "lat": 42.6833,
-    "long": 23.3167
-  },
-  {
-    "city": "Stockholm",
-    "lat": 59.3508,
-    "long": 18.0973
-  },
-  {
-    "city": "Tallinn",
-    "lat": 59.4339,
-    "long": 24.728
-  },
-  {
-    "city": "Tirana",
-    "lat": 41.3275,
-    "long": 19.8189
-  },
-  {
-    "city": "Vaduz",
-    "lat": 47.1337,
-    "long": 9.5167
-  },
-  {
-    "city": "Valletta",
-    "lat": 35.8997,
-    "long": 14.5147
-  },
-  {
-    "city": "Vienna",
-    "lat": 48.2,
-    "long": 16.3666
-  },
-  {
-    "city": "Vilnius",
-    "lat": 54.6834,
-    "long": 25.3166
-  },
-  {
-    "city": "Warsaw",
-    "lat": 52.25,
-    "long": 21
-  },
-  {
-    "city": "Zagreb",
-    "lat": 45.8,
-    "long": 16
-  }
-];

@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { ReservationComponent } from './reservation/reservation.component';
 
 const routes: Routes = [
-  {path: 'travel/:travelid', component: ReservationComponent}
+  {path: "/", component: ReservationComponent}
 ];
 
 @NgModule({

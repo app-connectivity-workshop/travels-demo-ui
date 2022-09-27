@@ -1,8 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { TravelsService } from '../travels.service';
 import { CityDetails } from '../models/city-details.model';
 import { City } from '../models/city.model';
+import { WhoAmI } from '../models/whoami.model';
 
 @Component({
   selector: 'app-reservation',
@@ -11,19 +11,20 @@ import { City } from '../models/city.model';
 })
 
 export class ReservationComponent implements OnInit {
-  travelId = "blue"
-  private route:ActivatedRoute;
+  portalId: WhoAmI;
   cities: City[];
   cityDetails: CityDetails;
   private travelsService:TravelsService;
+
 
   @Input() selectedCity;
 
 
   
-  constructor(route: ActivatedRoute, travelsService:TravelsService) {
-    this.route = route;
+  constructor( travelsService:TravelsService) {
+
     this.cities = [];
+    this.portalId = new WhoAmI;
     this.cityDetails = new CityDetails;
     this. travelsService = travelsService;
     this.selectedCity = "Choose your city";
@@ -31,13 +32,18 @@ export class ReservationComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    console.log("routeParams", routeParams)
-    this.travelId = String(routeParams.get('travelid'));
+
     this.fetchCities();
-    console.log("travelId from route", this.travelId)
+    this.fetchWhoAmI();
+    
+
   }
 
+  fetchWhoAmI() {
+    console.log("component fetchCities")
+    this.travelsService.fetchWhoAmI()
+    .subscribe(output => (this.portalId = output));
+  }
 
 
   fetchCities() {
