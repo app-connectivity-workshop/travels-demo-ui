@@ -1,0 +1,32 @@
+.maintxt {
+    background-size: cover;
+    height: 100%;
+}
+
+.bg-blue {
+    background-image: url(assets/images/bg_blue.jpg);
+
+}
+.bg-green {
+    background-image: url(assets/images/bg_green.jpg);
+
+}
+.bg-red {
+    background-image: url(assets/images/bg_red.jpg);
+
+}
+
+.slider-text h1 {
+    font-size: 60px;
+    color: #fff;
+    line-height: 1.2;
+    font-weight: 200;
+    font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.slider-text p {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+}

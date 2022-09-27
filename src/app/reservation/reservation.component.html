@@ -1,0 +1,121 @@
+<div class="container maintxt bg-{{travelId}}">
+    <br><br><br>
+
+    <div class="slider-text ">
+        <h1>
+            <strong>EXPLORE</strong> <br> WITH TRAVELS <strong>{{travelId | uppercase}}</strong>
+        </h1>
+
+
+        <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
+            style="opacity: 1; transform: translateZ(0px) translateY(0%);">
+            Find great places to stay, eat, shop, or visit from local experts
+        </p>
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+    <div class="container">
+        <span class="border ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-3">
+                                <select class="form-select"  [(ngModel)]="selectedCity" 
+                                    id="cities">
+                                    <option>Choose your city</option>
+                                    <option *ngFor="let order of cities; let i = index" [value]="cities[i].city">
+                                        {{cities[i].city}}
+                                        <!-- - lat:{{cities[i].lat}} - long:{{cities[i].long}}-->
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <button class="float-right btn btn-warning" type="button"  [disabled]="selectedCity =='Choose your city'"
+                                    (click)="fetchDetailsForCity(selectedCity)">
+                                    Find details
+                                </button>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </span>
+    </div>
+    <div class="card opacity" *ngIf="selectedCity !='Choose your city' && cityDetails.flights && cityDetails.flights.length >0 ">
+        <div class="card-body ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div>
+                            <h1>Flights</h1>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Airline</th>
+                                        <th scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-striped">
+                                    <tr *ngFor="let flight of this.cityDetails.flights; let i = index">
+                                        <td scope="row">
+                                            {{ flight.airline }}</td>
+                                        <td scope="row">{{ flight.price | currency }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div>
+                            <h1>Hotels</h1>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Hotel</th>
+                                        <th scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-striped">
+                                    <tr *ngFor="let hotel of this.cityDetails.hotels; let i = index">
+                                        <td scope="row">
+                                            {{ hotel.hotel }}</td>
+                                        <td scope="row">{{ hotel.price | currency }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div>
+                            <h1>Insurances</h1>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Insurance Company</th>
+                                        <th scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-striped">
+                                    <tr *ngFor="let insurance of this.cityDetails.insurances; let i = index">
+                                        <td scope="row">
+                                            {{ insurance.company }}</td>
+                                        <td scope="row">{{ insurance.price | currency }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                                        
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<!--{{this.cityDetails | json}}-->
