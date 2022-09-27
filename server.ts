@@ -79,8 +79,13 @@ export function app(): express.Express {
   //res.send(cities);
   console.log("GET_CITIES invoked")
   var url = API_GET_CITIES;
-  axios
-    .get(url)
+  if (API_USER_KEY_VALUE!=null && API_USER_KEY_VALUE!="") {
+    url = url + "?" + API_USER_KEY_NAME + "=" + API_USER_KEY_VALUE;
+  }
+
+  console.log("GET_CITIES Url is>>" + url + "<<");
+  
+  axios.get(url)
     .then((response: any) => {
       console.log("GET_CITIES response.data", response.data)
       res.send(response.data);
@@ -90,14 +95,17 @@ export function app(): express.Express {
   });
 
   server.get(GET_DETAILS_FOR_CITY, (req, res) => {
-    var city =  req.query["city"]
-    var url = API_GET_DETAILS_FOR_CITY;
-
     console.log("GET_DETAILS_FOR_CITY invoke for city:" + city);
-    console.log("GET_DETAILS_FOR_CITY invokedURL:" + get('API_GET_DETAILS_FOR_CITY').asString());
-
+    var city =  req.query["city"]
+    var url = API_GET_DETAILS_FOR_CITY + "/" + city;
+    if (API_USER_KEY_VALUE!=null && API_USER_KEY_VALUE!="") {
+      url = url + "?" + API_USER_KEY_NAME + "=" + API_USER_KEY_VALUE;
+    }
+    
+    console.log("GET_DETAILS_FOR_CITY Url is>>" + url + "<<");
+    
     axios
-      .get(API_GET_DETAILS_FOR_CITY + "/" + city)
+      .get(url)
       .then((response: any) => {
         console.log("GET_DETAILS_FOR_CITY response.data", response.data)
         res.send(response.data);
