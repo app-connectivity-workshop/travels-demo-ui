@@ -47,7 +47,7 @@ http://localhost:4200
 ```
 NODE_ENV=prod
 PORT=8080
-WHOMI=green
+WHOAMI=green
 API_GET_CITIES=<url> /*this is  the Istio Travels endpoint*/
 API_GET_DETAILS_FOR_CITY=<url> /*this is the Istio Travels endpoint*/
 API_USER_KEY_NAME=<api_key_nsame> /** this  is the api key name as per 3Scale application plan **/
