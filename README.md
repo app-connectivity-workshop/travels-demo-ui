@@ -23,7 +23,7 @@ export API_GET_CITIES=http://cc63cf69-7b14-4ea3-9588-b6b3ec2cf39d.mock.pstmn.io/
 export API_GET_DETAILS_FOR_CITY=http://cc63cf69-7b14-4ea3-9588-b6b3ec2cf39d.mock.pstmn.io/travels/London
 export WHOMI=green
 export API_USER_KEY_NAME=user_key /** this  is the api key name as per 3Scale application plan **/
-export API_USER_KEY_VALUE="23456789" /** this  is the api key value as per 3Scale application plan **/
+export API_USER_KEY_VALUE=3scaleistiosecret /** this  is the api key value as per 3Scale application plan **/
 ```
 
 ## C. Accessing the portal
@@ -50,7 +50,7 @@ PORT=8080
 WHOAMI=green
 API_GET_CITIES=<url> /*this is  the Istio Travels endpoint*/
 API_GET_DETAILS_FOR_CITY=<url> /*this is the Istio Travels endpoint*/
-API_USER_KEY_NAME=<api_key_nsame> /** this  is the api key name as per 3Scale application plan **/
+API_USER_KEY_NAME=<api_key_name> /** this  is the api key name as per 3Scale application plan **/
 API_USER_KEY_VALUE=<api_key_value> /** this  is the api key value as per 3Scale application plan **/
 
 ```

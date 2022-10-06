@@ -41,8 +41,8 @@ export function app(): express.Express {
   const API_GET_DETAILS_FOR_CITY = get('API_GET_DETAILS_FOR_CITY').default('http:/cc63cf69-7b14-4ea3-9588-b6b3ec2cf39d.mock.pstmn.io/travels').asString();
   
   const API_MANAGEMENT_FLAG = get('API_MANAGEMENT_FLAG').default("NO").asString();  
-  const API_USER_KEY_NAME = get('USER_KEY').default('api_key').asString();
-  const API_USER_KEY_VALUE = get('API_USER_KEY_VALUE').default('8efad5cc78ecbbb7dbb8d06b04596aeb').asString();
+  const API_USER_KEY_NAME = get('API_USER_KEY_NAME').default('api_key').asString();
+  const API_USER_KEY_VALUE = get('API_USER_KEY_VALUE').default('3scaleistiosecret').asString();
   
   
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
