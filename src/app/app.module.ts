@@ -9,7 +9,7 @@ import { HttpErrorHandler } from './http-error-handler.service';
 import { AppConfigService } from './providers/app-config.service'
 import { TravelsService } from './travels.service';
 import { FormsModule } from '@angular/forms';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 export function initConfig(appConfig: AppConfigService) {
@@ -23,7 +23,7 @@ export function initConfig(appConfig: AppConfigService) {
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
-    FormsModule
+    FormsModule, NgbModule
   ],
   providers: [
     {

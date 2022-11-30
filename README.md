@@ -19,8 +19,8 @@ This also has "Server-side rendering (SSR) with Angular Universal" enables. Read
 ## B. Setup env variables In local env
 
 ```
-export API_GET_CITIES=http://cc63cf69-7b14-4ea3-9588-b6b3ec2cf39d.mock.pstmn.io/travels
-export API_GET_DETAILS_FOR_CITY=http://cc63cf69-7b14-4ea3-9588-b6b3ec2cf39d.mock.pstmn.io/travels/London
+export API_GET_CITIES=https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels
+export API_GET_DETAILS_FOR_CITY=https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels
 export WHOMI=green
 export API_USER_KEY_NAME=user_key /** this  is the api key name as per 3Scale application plan **/
 export API_USER_KEY_VALUE=3scaleistiosecret /** this  is the api key value as per 3Scale application plan **/
