@@ -4,6 +4,8 @@ FROM registry.access.redhat.com/ubi8/nodejs-16:1 as builder
 # Add dependencies
 COPY --chown=1001:1001 package*.json $HOME
 
+RUN npm config set legacy-peer-deps true
+
 RUN npm install -g @angular/cli
 
 #### install project dependencies
