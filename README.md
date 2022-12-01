@@ -10,10 +10,10 @@ This also has "Server-side rendering (SSR) with Angular Universal" enables. Read
 
 * Run `npm run dev:ssr` for running this as server side app. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-*  Setup  these environment variables
-** API_GET_CITIES - API  pointing to the Istio travels endpoint
-** API_GET_DETAILS_FOR_CITY- API  pointing to the Istio travels endpoint
-** WHOMI - the valid values are: red, green, blue
+###  Setup  these environment variables
+* API_GET_CITIES - API  pointing to the Istio travels endpoint
+* API_GET_DETAILS_FOR_CITY- API  pointing to the Istio travels endpoint
+* WHOAMI - the valid values are: red, green, blue
 
 
 ## B. Setup env variables In local env
