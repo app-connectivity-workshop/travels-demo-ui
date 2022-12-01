@@ -35,16 +35,16 @@ export function app(): express.Express {
 
   // external micro services typically running on OpenShift
   const GET_CITIES = '/api/getcities';
-  const API_GET_CITIES = get('API_GET_CITIES').default('http://cc63cf69-7b14-4ea3-9588-b6b3ec2cf39d.mock.pstmn.io/travels').asString();
-  
+  const API_GET_CITIES = get('API_GET_CITIES').default('https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels').asString();
+
   const GET_DETAILS_FOR_CITY = '/api/getDetailsForCity';
-  const API_GET_DETAILS_FOR_CITY = get('API_GET_DETAILS_FOR_CITY').default('http:/cc63cf69-7b14-4ea3-9588-b6b3ec2cf39d.mock.pstmn.io/travels').asString();
-  
-  const API_MANAGEMENT_FLAG = get('API_MANAGEMENT_FLAG').default("NO").asString();  
+  const API_GET_DETAILS_FOR_CITY = get('API_GET_DETAILS_FOR_CITY').default('https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels').asString();
+
+  const API_MANAGEMENT_FLAG = get('API_MANAGEMENT_FLAG').default("NO").asString();
   const API_USER_KEY_NAME = get('API_USER_KEY_NAME').default('api_key').asString();
   const API_USER_KEY_VALUE = get('API_USER_KEY_VALUE').default('3scaleistiosecret').asString();
-  
-  
+
+
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
@@ -57,22 +57,22 @@ export function app(): express.Express {
 
   const bodyParser = require('body-parser');
   const axios = require('axios');
-  
+
   if(API_MANAGEMENT_FLAG && API_MANAGEMENT_FLAG =='YES') {
     axios.defaults.headers.common[API_USER_KEY_NAME] = API_USER_KEY_VALUE // for all requests
   }
 
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({extended: true}) );
-  
-  /** 
+
+  /**
    * custom API Calls - BEGIN
   **/
 
  // Get Product Details based on Product IDs
  server.get(GETWHOAMI, (req, res) => {
   console.log("WHOAMI", WHOAMI)
-    res.send("{\"travelId\" : \"" + WHOAMI+ " \"}");  
+    res.send("{\"travelId\" : \"" + WHOAMI+ " \"}");
   });
 
  server.get(GET_CITIES, (req, res) => {
@@ -84,14 +84,14 @@ export function app(): express.Express {
   }
 
   console.log("GET_CITIES Url is>>" + url + "<<");
-  
+
   axios.get(url)
     .then((response: any) => {
       console.log("GET_CITIES response.data", response.data)
       res.send(response.data);
     })
     .catch((error: any) => { console.log("GET_CITIES", error); });
-  
+
   });
 
   server.get(GET_DETAILS_FOR_CITY, (req, res) => {
@@ -101,9 +101,9 @@ export function app(): express.Express {
     if (API_USER_KEY_VALUE!=null && API_USER_KEY_VALUE!="") {
       url = url + "?" + API_USER_KEY_NAME + "=" + API_USER_KEY_VALUE;
     }
-    
+
     console.log("GET_DETAILS_FOR_CITY Url is>>" + url + "<<");
-    
+
     axios
       .get(url)
       .then((response: any) => {
@@ -114,7 +114,7 @@ export function app(): express.Express {
   });
 
 
-  /** 
+  /**
    * custom API Calls - BEGIN
   **/
 
