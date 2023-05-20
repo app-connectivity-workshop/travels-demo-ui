@@ -1,55 +1,69 @@
 <div class="container maintxt bg-{{portalId.travelId}}">
     <br><br><br>
-
     <div class="slider-text ">
         <h1>
             <strong>EXPLORE</strong> <br> WITH TRAVELS <strong>{{portalId.travelId | uppercase}}</strong>
         </h1>
-
-
         <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"
             style="opacity: 1; transform: translateZ(0px) translateY(0%);">
             Find great places to stay, eat, shop, or visit from local experts
         </p>
     </div>
-    <br><br><br><br><br><br><br><br><br>
+
     <div class="container">
         <span class="border ">
-            <div class="card">
+            <div class="card" style="border: 0px;">
                 <div class="card-body">
                     <div class="container">
-                        <div class="row ">
-                            <div class="col-3">
-                                <select class="form-select"  [(ngModel)]="selectedCity" 
-                                    id="cities">
-                                    <option>Choose your city</option>
-                                    <option *ngFor="let order of cities; let i = index" [value]="cities[i].city">
-                                        {{cities[i].city}}
-                                        <!-- - lat:{{cities[i].lat}} - long:{{cities[i].long}}-->
-                                    </option>
-                                </select>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="card" style="border: 0px;">
+                                    <div class="card-body">
+                                        <select class="form-select" [(ngModel)]="selectedCity" id="cities">
+                                            <option>Choose your city</option>
+                                            <option *ngFor="let order of cities; let i = index"
+                                                [value]="cities[i].city">
+                                                {{cities[i].city}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-3 ">
-                                <input class="form-control" placeholder="Choose From Date"
-                                name="dp" [(ngModel)]="startdate" ngbDatepicker #sd="ngbDatepicker"
-                                required  #name="ngModel" (click)="sd.toggle()" >
-                                <div class="invalid-feedback">Expiration date required</div>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-control" placeholder="Choose To Date"
-                                name="dp" [(ngModel)]="enddate" ngbDatepicker #ed="ngbDatepicker"
-                                required  #name="ngModel" (click)="ed.toggle()" >
-                                <div class="invalid-feedback">Expiration date required</div>
-                            </div>
-                            <div class="col-3">
-                                <button class="float-right btn btn-warning" type="button"  [disabled]="selectedCity =='Choose your city'"
-                                    (click)="fetchDetailsForCity(selectedCity)">
-                                    Find details
-                                </button>
-                            </div>
+                            <div class="col-sm-3">
+                                <div class="card" style="border: 0px;">
+                                    <div class="card-body">
+                                        <input class="form-control" placeholder="Choose From Date" name="dp"
+                                            [(ngModel)]="startdate" ngbDatepicker #sd="ngbDatepicker" required
+                                            #name="ngModel" (click)="sd.toggle()">
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card" style="border: 0px;">
+                                    <div class="card-body">
+                                        <input class="form-control" placeholder="Choose To Date" name="dp"
+                                            [(ngModel)]="enddate" ngbDatepicker #ed="ngbDatepicker" required
+                                            #name="ngModel" (click)="ed.toggle()">
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card" style="border: 0px;">
+                                    <div class="card-body">
+                                        <button class="float-right btn btn-warning" type="button"
+                                            [disabled]="selectedCity =='Choose your city'"
+                                            (click)="fetchDetailsForCity(selectedCity)">
+                                            Find details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
+
                     </div>
 
                 </div>
@@ -57,36 +71,32 @@
         </span>
     </div>
 
-    <div class="card opacity" *ngIf="bookingRef!=''">
-        <div class="card-body ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4">
-                        <h3>Your booking reference: </h3>{{bookingRef}}
-                    </div>
-                    <div class="col-4">
-                        <div>
-                        <h1>Your Holiday Details</h1>
-                          <strong> Flight</strong>: {{selectedFlight.airline}} <span *ngIf="selectedFlight.airline!=''"> (${{selectedFlight.price}})</span><br>
-                          <strong>Hotel</strong>: {{selectedHotel.hotel}} <span *ngIf="selectedHotel.hotel!=''">(${{selectedHotel.price}})</span><br>
-                          <strong>Car</strong>: {{selectedCar.carModel}} <span *ngIf="selectedCar.carModel!=''">(${{selectedCar.price}})</span><br>
-                          <strong>Insurance</strong>: {{selectedInsurance.company}} <span *ngIf="selectedInsurance.company!=''">(${{selectedInsurance.price}})</span><br>
-                        </div>
-                    </div>
-
-                </div>
+    <div class="container" *ngIf="bookingRef!=''">
+        <div class="card opacity mb-3">
+            <div class="card-body ">
+                <h5 class="card-title"><strong>Boking reference: </strong>{{bookingRef}}</h5>
+                <div>
+                    <h5 class="card-title">My Holiday Choices</h5>
+                    <strong> Flight</strong>: {{selectedFlight.airline}} <span
+                        *ngIf="selectedFlight.airline!=''"> (${{selectedFlight.price}})</span><br>
+                    <strong>Hotel</strong>: {{selectedHotel.hotel}} <span
+                        *ngIf="selectedHotel.hotel!=''">(${{selectedHotel.price}})</span><br>
+                    <strong>Car</strong>: {{selectedCar.carModel}} <span
+                        *ngIf="selectedCar.carModel!=''">(${{selectedCar.price}})</span><br>
+                    <strong>Insurance</strong>: {{selectedInsurance.company}} <span
+                        *ngIf="selectedInsurance.company!=''">(${{selectedInsurance.price}})</span><br>
+                </div>                            
             </div>
         </div>
     </div>
 
-
-    <div class="card opacity" *ngIf="selectedCity !='Choose your city' && cityDetails.flights && cityDetails.flights.length >0 ">
-        <div class="card-body ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4">
-                        <div>
-                            <h1>Flights</h1>
+    <div class="container" *ngIf="selectedCity !='Choose your city' && cityDetails.flights && cityDetails.flights.length >0 ">
+        <div class="card-deck opacity">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-2" style="border: 0px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Flights</h5>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -96,10 +106,10 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-striped">
-                                    <tr *ngFor="let flight of this.cityDetails.flights; let i = index" >
+                                    <tr *ngFor="let flight of this.cityDetails.flights; let i = index">
                                         <td>
-                                            <input  name="flightoptions" ng-control="flightoptions"  type="radio" 
-                                            (click)="selectedFlight=flight;bookingRef=''"/>
+                                            <input name="flightoptions" ng-control="flightoptions" type="radio"
+                                                (click)="selectedFlight=flight;bookingRef=''" />
                                         </td>
                                         <td scope="row">
                                             {{ flight.airline }}
@@ -110,9 +120,11 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div>
-                            <h1>Hotels</h1>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title">Hotels</h5>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -124,8 +136,8 @@
                                 <tbody class="table-striped">
                                     <tr *ngFor="let hotel of this.cityDetails.hotels; let i = index">
                                         <td>
-                                            <input  name="hoteloptions" ng-control="hoteloptions"  type="radio"
-                                            (click)="selectedHotel=hotel"/>
+                                            <input name="hoteloptions" ng-control="hoteloptions" type="radio"
+                                                (click)="selectedHotel=hotel" />
                                         </td>
                                         <td scope="row">
                                             {{ hotel.hotel }}</td>
@@ -135,9 +147,14 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div>
-                            <h1>Cars</h1>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title">Cars</h5>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -149,8 +166,8 @@
                                 <tbody class="table-striped">
                                     <tr *ngFor="let car of this.cityDetails.cars; let i = index">
                                         <td>
-                                            <input  name="caroptions" ng-control="caroptions"  type="radio"
-                                            (click)="selectedCar=car"/>
+                                            <input name="caroptions" ng-control="caroptions" type="radio"
+                                                (click)="selectedCar=car" />
                                         </td>
                                         <td scope="row">
                                             {{ car.carModel }}</td>
@@ -159,10 +176,12 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div> 
-                    <div class="col-4">
-                        <div>
-                            <h1>Insurances</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title">Insurances</h5>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -174,8 +193,8 @@
                                 <tbody class="table-striped">
                                     <tr *ngFor="let insurance of this.cityDetails.insurances; let i = index">
                                         <td>
-                                            <input  name="insuranceoptions" ng-control="insuranceoptions"  type="radio"
-                                            (click)="selectedInsurance=insurance"/>
+                                            <input name="insuranceoptions" ng-control="insuranceoptions" type="radio"
+                                                (click)="selectedInsurance=insurance" />
                                         </td>
                                         <td scope="row">
                                             {{ insurance.company }}</td>
@@ -185,34 +204,40 @@
                             </table>
                         </div>
                     </div>
-                    
-                    <div class="col-4">
-                        <div>
-                            <h1>Your Selection</h1>
-                          <strong> Flight</strong>: {{selectedFlight.airline}} <span *ngIf="selectedFlight.airline!=''"> (${{selectedFlight.price}})</span><br>
-                          <strong>Hotel</strong>: {{selectedHotel.hotel}} <span *ngIf="selectedHotel.hotel!=''">(${{selectedHotel.price}})</span><br>
-                          <strong>Car</strong>: {{selectedCar.carModel}} <span *ngIf="selectedCar.carModel!=''">(${{selectedCar.price}})</span><br>
-                          <strong>Insurance</strong>: {{selectedInsurance.company}} <span *ngIf="selectedInsurance.company!=''">(${{selectedInsurance.price}})</span><br>
-                        </div>
-                    </div>
-
-                    <div class="col-4">
-                        <span  *ngIf="total() > 0 && bookingRef==''">
-                        <h1>Your total: $ {{total()}} </h1>
-                        <button class="float-right btn btn-success" type="button"  
-                            [disabled]="selectedFlight==null || selectedHotel==null || selectedCar==null || selectedInsurance==null"
-                            (click)="book()">
-                            Book my holiday
-                        </button>   
-                        </span>
-                    
-                    </div>
 
                 </div>
             </div>
         </div>
+        
+
+        <!--Summary section-->
+
+        <div class="card opacity mb-3">
+            <div class="card-body ">
+                <h5 class="card-title">My Holiday Details</h5>
+                <div>
+                    <strong> Flight</strong>: {{selectedFlight.airline}} <span *ngIf="selectedFlight.airline!=''">
+                        (${{selectedFlight.price}})</span><br>
+                    <strong>Hotel</strong>: {{selectedHotel.hotel}} <span
+                        *ngIf="selectedHotel.hotel!=''">(${{selectedHotel.price}})</span><br>
+                    <strong>Car</strong>: {{selectedCar.carModel}} <span
+                        *ngIf="selectedCar.carModel!=''">(${{selectedCar.price}})</span><br>
+                    <strong>Insurance</strong>: {{selectedInsurance.company}} <span
+                        *ngIf="selectedInsurance.company!=''">(${{selectedInsurance.price}})</span><br>
+
+                        <span *ngIf="total() > 0 && bookingRef==''">
+                            <h5>Total: $ {{total()}} </h5>
+                            <button class="float-right btn btn-success" type="button"
+                                [disabled]="selectedFlight==null || selectedHotel==null || selectedCar==null || selectedInsurance==null"
+                                (click)="book()">
+                                Book my holiday
+                            </button>
+                        </span>
+                    
+                </div>                            
+            </div>
+        </div>
+
+        <!--Summary section end-->
     </div>
-
-    <br><br>
-
 </div>
