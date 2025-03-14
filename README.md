@@ -32,11 +32,11 @@ http://localhost:4200
 
 ## D. podman build
 ```
-    podman build . -t quay.io/app_conn_workshop/travels-demo-ui:latest quay.io/app_conn_workshop/travels-demo-ui:160e07e
+    podman build . -t quay.io/app_conn_workshop/travels-demo-ui:b834b1c -t quay.io/app_conn_workshop/travels-demo-ui:latest
     
     podman push quay.io/app_conn_workshop/travels-demo-ui:latest
 
-    podman push quay.io/app_conn_workshop/travels-demo-ui:160e07e
+    podman push quay.io/app_conn_workshop/travels-demo-ui:b834b1c
 ```
 
 
