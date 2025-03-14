@@ -15,12 +15,12 @@
                 <div class="card-body">
                     <div class="container">
                         <div class="row">
-                            <div class="alert alert-danger" role="alert" *ngIf="errorMessage && errorMessage.ok != true">
+                            <div class="alert alert-danger" role="alert" *ngIf="errorMessage.ok != true">
                                 <span>We are sorry, but an error has occurred. </span><br>
                                 <span><strong>Error Status Code:</strong> {{ errorMessage.status }} </span> <br>
                                 <span><strong>Error Status Text:</strong> {{ errorMessage.statusText }} </span><br>
                             </div>
-                            <div class="alert alert-success" role="alert" *ngIf="errorMessage && errorMessage.ok === true">
+                            <div class="alert alert-success" role="alert" *ngIf="errorMessage.ok === true">
                                 API Call is successful. Go ahead and choose your city!
                             </div>
                         

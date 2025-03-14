@@ -46,6 +46,7 @@ export class ReservationComponent implements OnInit {
     this.bookingRef = ""
     this.messageService = messageService;
     
+    
   }
 
 
@@ -81,6 +82,9 @@ export class ReservationComponent implements OnInit {
     .subscribe(cityDetails => {
       this.cityDetails = cityDetails;
       this.errorMessage = JSON.parse(this.messageService.get())
+      if (!this.errorMessage) {
+        this.errorMessage = {ok: true}
+      }
     });
   }
 
