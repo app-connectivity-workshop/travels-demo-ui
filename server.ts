@@ -90,7 +90,10 @@ export function app(): express.Express {
       console.log("GET_CITIES response.data", response.data)
       res.send(response.data);
     })
-    .catch((error: any) => { console.log("GET_CITIES", error); });
+    .catch((error: any) => { 
+      console.log("GET_CITIES", error.response); 
+      res.status(error.response.status).send();
+    });
 
   });
 
@@ -110,7 +113,10 @@ export function app(): express.Express {
         console.log("GET_DETAILS_FOR_CITY response.data", response.data)
         res.send(response.data);
       })
-      .catch((error: any) => { console.log("GET_DETAILS_FOR_CITY", error); });
+      .catch((error: any) => { 
+        console.log("GET_DETAILS_FOR_CITY", error.response); 
+        res.status(error.response.status).send();
+      });
   });
 
 

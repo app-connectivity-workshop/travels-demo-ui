@@ -1,4 +1,4 @@
-# TravelsUI
+# TravelsUI for App Connectivity Workshop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 This also has "Server-side rendering (SSR) with Angular Universal" enables. Read more about this here: https://angular.io/guide/universal
@@ -30,9 +30,11 @@ export API_USER_KEY_VALUE=3scaleistiosecret /** this  is the api key value as pe
 http://localhost:4200
 
 
-## D. Docker build
+## D. podman build
 ```
-    docker build . -t quay.io/redhat-servicemesh-apim-demo/travels-demo-ui
+    podman build . -t quay.io/app_conn_workshop/travels-demo-ui
+    
+    podman push quay.io/app_conn_workshop/travels-demo-ui
 ```
 
 
@@ -40,7 +42,7 @@ http://localhost:4200
 # II. Setup for OpenShift for production deployment
 
 ### Import the container image 
-* quay.io/redhat-servicemesh-apim-demo/travels-demo-ui
+* quay.io/app_conn_workshop/travels-demo-ui
 * expose route 
 
 ### Create the following environment variables
