@@ -19,8 +19,8 @@ This also has "Server-side rendering (SSR) with Angular Universal" enables. Read
 ## B. Setup env variables In local env
 
 ```
-export API_GET_CITIES=https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels
-export API_GET_DETAILS_FOR_CITY=https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels
+export API_GET_CITIES=https://api.travels.sandbox2586.opentlc.com/travels
+export API_GET_DETAILS_FOR_CITY=https://api.travels.sandbox2586.opentlc.com/travels
 export WHOMI=green
 export API_USER_KEY_NAME=user_key /** this  is the api key name as per 3Scale application plan **/
 export API_USER_KEY_VALUE=3scaleistiosecret /** this  is the api key value as per 3Scale application plan **/
@@ -32,9 +32,11 @@ http://localhost:4200
 
 ## D. podman build
 ```
-    podman build . -t quay.io/app_conn_workshop/travels-demo-ui
+    podman build . -t quay.io/app_conn_workshop/travels-demo-ui:latest quay.io/app_conn_workshop/travels-demo-ui:160e07e
     
-    podman push quay.io/app_conn_workshop/travels-demo-ui
+    podman push quay.io/app_conn_workshop/travels-demo-ui:latest
+
+    podman push quay.io/app_conn_workshop/travels-demo-ui:160e07e
 ```
 
 

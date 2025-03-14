@@ -1,9 +1,9 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Inject } from '@angular/core';
 import { TravelsService } from '../travels.service';
 import { Car, CityDetails, Flight, Hotel, Insurance } from '../models/city-details.model';
 import { City } from '../models/city.model';
 import { WhoAmI } from '../models/whoami.model';
-
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-reservation',
@@ -25,12 +25,14 @@ export class ReservationComponent implements OnInit {
   bookingRef: String
   flightoption = null;
 
+  errorMessage:any;
+  private messageService:MessageService;
 
   @Input() selectedCity;
 
 
   
-  constructor( travelsService:TravelsService) {
+  constructor( travelsService:TravelsService, @Inject(MessageService) messageService:MessageService,) {
 
     this.cities = [];
     this.portalId = new WhoAmI;
@@ -42,20 +44,18 @@ export class ReservationComponent implements OnInit {
     this.selectedCar = new Car;
     this.selectedInsurance = new Insurance;
     this.bookingRef = ""
-
+    this.messageService = messageService;
+    
   }
 
 
   ngOnInit(): void {
-
     this.fetchCities();
     this.fetchWhoAmI();
-    
-
   }
 
   fetchWhoAmI() {
-    console.log("component fetchCities")
+    console.log("component fetchWhoAmI")
     this.travelsService.fetchWhoAmI()
     .subscribe(output => (this.portalId = output));
   }
@@ -64,14 +64,24 @@ export class ReservationComponent implements OnInit {
   fetchCities() {
     console.log("component fetchCities")
     this.travelsService.fetchCities()
-    .subscribe(cities => (this.cities = cities));
+    .subscribe(cities => {
+      this.cities = cities;
+      console.log("this.cities", this.cities)
+      this.errorMessage = JSON.parse(this.messageService.get())
+      if (!this.errorMessage) {
+        this.errorMessage = {ok: true}
+      }
+    });
   }
 
   fetchDetailsForCity(city: String) {
     this.bookingRef = '';
     this.resetSelection();
     this.travelsService.fetchDetailsForCity(city)
-    .subscribe(cityDetails => (this.cityDetails = cityDetails));
+    .subscribe(cityDetails => {
+      this.cityDetails = cityDetails;
+      this.errorMessage = JSON.parse(this.messageService.get())
+    });
   }
 
   resetSelection () {

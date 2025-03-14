@@ -9,15 +9,24 @@
             Find great places to stay, eat, shop, or visit from local experts
         </p>
     </div>
-
     <div class="container">
         <span class="border ">
             <div class="card" style="border: 0px;">
                 <div class="card-body">
                     <div class="container">
                         <div class="row">
+                            <div class="alert alert-danger" role="alert" *ngIf="errorMessage.ok != true">
+                                <span>We are sorry, but an error has occurred. </span><br>
+                                <span><strong>Error Status Code:</strong> {{ errorMessage.status }} </span> <br>
+                                <span><strong>Error Status Text:</strong> {{ errorMessage.statusText }} </span><br>
+                            </div>
+                            <div class="alert alert-success" role="alert" *ngIf="errorMessage.ok === true">
+                                API Call is successful. Go ahead and choose your city!
+                            </div>
+                        
+                        
                             <div class="col-sm-3">
-                                <div class="card" style="border: 0px;">
+                                <div class="card" style="border: 0px;">                                        
                                     <div class="card-body">
                                         <select class="form-select" [(ngModel)]="selectedCity" id="cities">
                                             <option>Choose your city</option>

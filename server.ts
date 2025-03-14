@@ -35,14 +35,14 @@ export function app(): express.Express {
 
   // external micro services typically running on OpenShift
   const GET_CITIES = '/api/getcities';
-  const API_GET_CITIES = get('API_GET_CITIES').default('https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels').asString();
+  const API_GET_CITIES = get('API_GET_CITIES').asString();
 
   const GET_DETAILS_FOR_CITY = '/api/getDetailsForCity';
-  const API_GET_DETAILS_FOR_CITY = get('API_GET_DETAILS_FOR_CITY').default('https://df76b9ac-d66b-4d9a-a748-90a159bd95c9.mock.pstmn.io/travels').asString();
+  const API_GET_DETAILS_FOR_CITY = get('API_GET_DETAILS_FOR_CITY').asString();
 
   const API_MANAGEMENT_FLAG = get('API_MANAGEMENT_FLAG').default("NO").asString();
-  const API_USER_KEY_NAME = get('API_USER_KEY_NAME').default('api_key').asString();
-  const API_USER_KEY_VALUE = get('API_USER_KEY_VALUE').default('3scaleistiosecret').asString();
+  const API_USER_KEY_NAME = get('API_USER_KEY_NAME').default('APIKEY').asString();
+  const API_USER_KEY_VALUE = get('API_USER_KEY_VALUE').default('iamuser').asString();
 
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
@@ -58,9 +58,8 @@ export function app(): express.Express {
   const bodyParser = require('body-parser');
   const axios = require('axios');
 
-  if(API_MANAGEMENT_FLAG && API_MANAGEMENT_FLAG =='YES') {
-    axios.defaults.headers.common[API_USER_KEY_NAME] = API_USER_KEY_VALUE // for all requests
-  }
+  axios.defaults.headers.common["APIKEY"] = API_USER_KEY_VALUE // for all requests
+  
 
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({extended: true}) );
@@ -76,14 +75,14 @@ export function app(): express.Express {
   });
 
  server.get(GET_CITIES, (req, res) => {
-  //res.send(cities);
+  
   console.log("GET_CITIES invoked")
   var url = API_GET_CITIES;
   if (API_USER_KEY_VALUE!=null && API_USER_KEY_VALUE!="") {
     url = url + "?" + API_USER_KEY_NAME + "=" + API_USER_KEY_VALUE;
   }
 
-  console.log("GET_CITIES Url is>>" + url + "<<");
+  console.log("GET_CITIES Url is: " + url);
 
   axios.get(url)
     .then((response: any) => {
@@ -91,8 +90,13 @@ export function app(): express.Express {
       res.send(response.data);
     })
     .catch((error: any) => { 
-      console.log("GET_CITIES", error.response); 
-      res.status(error.response.status).send();
+      console.log("GET_CITIES Error Code", error.code); 
+      console.log("GET_CITIES Error Response Status", error.response.status); 
+      if(error.code == 'ENOTFOUND'){
+        res.status(404).send(url + "URL unknown");
+      } else {
+        res.status(error.response.status).send(error.response.data);
+      }
     });
 
   });
